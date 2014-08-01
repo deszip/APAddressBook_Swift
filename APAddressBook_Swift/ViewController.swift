@@ -12,7 +12,21 @@ class ViewController: UIViewController {
                             
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+
+        let addressBook : APAddressBook = APAddressBook()
+        
+        addressBook.loadContacts({(contacts, error: NSError!) in
+            println(contacts)
+            for contact in contacts {
+                // contact does not have name property
+                println(contact.name)
+                // and phone also
+                println(contact.phone)
+                
+                // this does not copile at all
+                //println(contact.somefooproperty)
+            }
+        })
     }
 
     override func didReceiveMemoryWarning() {
